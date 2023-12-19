@@ -1,4 +1,5 @@
-const span = document.querySelector("span");
+const numSpan = document.querySelector("#puppyNumber");
+const goBackSpan = document.querySelector("#goBack");
 const ul = document.querySelector("ul");
 let puppies = [];
 
@@ -6,7 +7,7 @@ window.addEventListener('hashchange', render);
 
 
 function render(){
-  span.innerHTML = puppies.length;
+  numSpan.innerHTML = puppies.length;
   const hash = window.location.hash;
   const id = hash.slice(1)*1;
   let filtered = puppies;
@@ -15,6 +16,12 @@ function render(){
      filtered = filtered.filter(function(puppy){
         return puppy.id === id; 
      });
+  }
+  if (filtered.length === 1) {
+    goBackSpan.innerHTML = "Go back";
+    goBackSpan.style.display = "inline";
+  } else {
+    goBackSpan.style.display = "none";
   }
    const html = filtered.map(function(puppy){
        return `
