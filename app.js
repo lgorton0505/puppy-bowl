@@ -2,6 +2,9 @@ const span = document.querySelector("span");
 const ul = document.querySelector("ul");
 let puppies = [];
 
+window.addEventListener('hashchange', render);
+
+
 function render(){
   span.innerHTML = puppies.length;
   const hash = window.location.hash;
@@ -17,11 +20,14 @@ function render(){
        return `
           <li>
              <h4><a href='#${puppy.id}'>${ puppy.name }</a><h4>
+             <p>${ puppy.breed }</p>
+             <img src='${ puppy.imageUrl }' />
           </li>
        `;
    }).join('');
    ul.innerHTML = html;
 }
+
 
 render();
 
